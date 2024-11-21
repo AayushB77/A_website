@@ -7,13 +7,26 @@
 </head>
 <body> 
     <p>Fill out the followings</p>
-    <form action="/google.com" method="post">
+    <form id="form">
     <label for="Name">Name</label><br>
     <input type="text" name="Name" id="Name"><br>
-    <label for="Grade">Grade</label><br>
-    <input type="text" name="Grade" id="Grade"><br>
+    <label for="Email">Email</label><br>
+    <input type="text" name="Email" id="Email"><br>
     <button type="submit">Submit</button>
     </form>
+    <script>
+        document.getElementById("form").addEventListener("submit", function (event) {
+            event.preventDefault();
+
+            const name = document.getElementById("name").value;
+            const email = document.getElementById("email").value;
+            const data = `Name: ${name}\nEmail: ${email}`;
+            const blob = new Blob([data], { type: "text/plain" });
+            const link = document.createElement("a");
+            link.href = URL.createObjectURL(blob);
+            link.download = "form-submission.txt";
+            link.click();
+    </script>
     
 </body>
 </html>
